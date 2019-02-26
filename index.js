@@ -23,11 +23,17 @@ bot.on('message', function(message)
     {
         message.channel.sendMessage('Hello ' + message.author + ' ,how are you');
     }
+    else if(message.content == 'WTF')
+    {
+        message.delete(2000);
+        message.channel.send("you have been warned " + message.author);
+    }
 });
 
-bot.on('guildMemberAdd', function(member)
+bot.on('guildMemberAdd', member => 
 {
-    member.send("Welcome to the " + member.guild + " Server");
+    const channel = member.guild.channels.find(ch => ch.name === 'member-log');
+    channel.send("Welcome to the " + member.guild + " Server, " + member);
     let memberRole = member.guild.roles.find("name", "Member");
     member.addRole(memberRole)
         .then(console.log)

@@ -1,4 +1,5 @@
 const commando = require('discord.js-commando');
+const Discord = require('discord.js');
 
 class DiceRollCommand extends commando.Command
 {
@@ -14,9 +15,21 @@ class DiceRollCommand extends commando.Command
 
     async run(message, args)
     {
-        var diceRoll = Math.floor(Math.random() * 6 + 1);
+        var diceRollingEmbed = new Discord.RichEmbed()
+            .setTitle('Rolling Dice')
+            .setThumbnail('https://media.giphy.com/media/u45fMZrUM3hf3kuc4O/giphy.gif')
+            .setColor('ffffff')
+            
+        message.channel.send(diceRollingEmbed)
+        .then(msg => [
+            msg.delete(3000)
+        ]);
 
-        message.channel.sendMessage({files: [__dirname + "/DicePics/Dice" + diceRoll + ".png"]});
+        setTimeout(function()
+        {
+            var diceRoll = Math.floor(Math.random() * 6 + 1);
+            message.channel.sendMessage({files: [__dirname + "/DicePics/Dice" + diceRoll + ".png"]});
+        }, 3500)
     }
 }
 
