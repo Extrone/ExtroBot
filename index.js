@@ -14,7 +14,7 @@ global.servers ={};
 
 bot.on('ready', function()
 {
-    console.log("Ready");
+    console.log("ExtroBot: I'm ready, Let's do this!");
 })
 
 bot.on('message', function(message)
